@@ -1,4 +1,4 @@
-TARGET = traversal
+TARGET = height
 LIBS = -lm
 CC = gcc
 CFLAGS = -g -Wall -I'./..'
@@ -9,7 +9,7 @@ OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c))
 HEADERS = $(wildcard *.h)
 
 %.o: %.c $(HEADERS)
-#	$(CC) $(CFLAGS) -c $< -o $@
+#   $(CC) $(CFLAGS) -c $< -o $@
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 #.PRECIOUS: $(TARGET) $(OBJECTS)
@@ -17,7 +17,7 @@ HEADERS = $(wildcard *.h)
 .PHONY: clean all default
 
 $(TARGET): $(OBJECTS)
-#	$(CC) $(OBJECTS) -Wall $(LIBS) -o $@
+#   $(CC) $(OBJECTS) -Wall $(LIBS) -o $@
 	$(CXX) $(OBJECTS) -Wall $(LIBS) -o $@
 
 default: $(TARGET)
