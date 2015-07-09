@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stack>
+#include <queue>
 
 typedef struct {
     int x;
@@ -44,14 +44,14 @@ int main() {
 
 void floodFill(bool[5][5], int xSize, int ySize, int xStart, int yStart) {
 
-    std::stack<GridPos> gridPosStack;
+    std::queue<GridPos> gridPosQueue;
 
-    gridPosStack.push((GridPos){ xStart, yStart });
+    gridPosQueue.push((GridPos){ xStart, yStart });
 
-    while(!gridPosStack.empty()) {
+    while(!gridPosQueue.empty()) {
 
-        GridPos gridPos = gridPosStack.top();
-        gridPosStack.pop();
+        GridPos gridPos = gridPosQueue.front();
+        gridPosQueue.pop();
 
         if(gridToFill[gridPos.y][gridPos.x] == false) {
 
@@ -60,18 +60,18 @@ void floodFill(bool[5][5], int xSize, int ySize, int xStart, int yStart) {
 
             // east
             if(gridPos.x + 1 < xSize) {
-                gridPosStack.push((GridPos){ gridPos.x + 1, gridPos.y });
+                gridPosQueue.push((GridPos){ gridPos.x + 1, gridPos.y });
             }
             // west
             if(gridPos.x - 1 >= 0) {
-                gridPosStack.push((GridPos){ gridPos.x - 1, gridPos.y });
+                gridPosQueue.push((GridPos){ gridPos.x - 1, gridPos.y });
             }
             // north
             if(gridPos.y + 1 < ySize) {
-                gridPosStack.push((GridPos){ gridPos.x, gridPos.y + 1});
+                gridPosQueue.push((GridPos){ gridPos.x, gridPos.y + 1});
             }
             if(gridPos.y - 1 >= 0) {
-                gridPosStack.push((GridPos){ gridPos.x, gridPos.y - 1});
+                gridPosQueue.push((GridPos){ gridPos.x, gridPos.y - 1});
             }
         }
     }
