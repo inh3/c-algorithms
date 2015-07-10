@@ -8,6 +8,9 @@ int numArray[9] = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
 int negLength = 3;
 int negArray[3] = { -1, -2, -3 };
 
+int valleyLength = 3;
+int valleyArray[3] = { 6, -7, 5 };
+
 int main() {
     printf("MAX SUBSEQUENT SUM:\n");
 
@@ -25,11 +28,18 @@ int main() {
     printf("\n");
     maxSum(negArray, negLength);
 
+    for(int i = 0; i < valleyLength; i++) {
+        printf("%d ", valleyArray[i]);
+    }
+    printf("\n");
+    maxSum(valleyArray, valleyLength);
+
     return 0;
 }
 
 void maxSum(int numArray[], int length) {
 
+    int tempStartIndex = -1;
     int startIndex = -1;
     int endIndex = -1;
 
@@ -38,10 +48,10 @@ void maxSum(int numArray[], int length) {
 
     for(int i = 0; i < length; i++) {
 
-        // set the start and end if this is a new subarray
+        // this could be the start of a new subarray because
+        // the sum is at 0 and the value is above 0
         if(thisSum == 0 && numArray[i] >= 0) {
-            startIndex = i;
-            endIndex = i;
+            tempStartIndex = i;
         }
 
         // update the total sum
@@ -54,6 +64,7 @@ void maxSum(int numArray[], int length) {
         }
         // the sum is positive and bigger so update the end index
         else if(thisSum > maxSum) {
+            startIndex = tempStartIndex;
             maxSum = thisSum;
             endIndex = i;
         }
