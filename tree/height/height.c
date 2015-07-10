@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include "tree.h"
 
-#define max(a,b) (((a) > (b)) ? (a) : (b))
-
 unsigned int treeHeight(struct TreeNode* root);
 
 int main() {
